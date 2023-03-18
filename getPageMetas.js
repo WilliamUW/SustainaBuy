@@ -72,33 +72,32 @@ console.log("ingredients", ingredients)
 console.log("packaging", packaging)
 console.log("checkpoint 1")
 
-const mark_prompt = `
+const score_prompt = `
+Generate an eco friendly score out of 100 for the product and the company based on the following 
+title: "${title}", 
+ingredients: "${ingredients}", 
+packaging type: "${packaging}".`
+
+console.log("prompt", score_prompt)
+
+const description_prompt = `
 Generate an eco friendly score out of 100 for the product and the company based on the following 
 title: "${title}", 
 ingredients: "${ingredients}", 
 packaging type: "${packaging}". 
 Give score out of 100 to each of the factors with an explanation regarding 
 the pros and cons of the product's sustainability.
-
-In addition, provide 3 alternative sustainable products similar to the product with title: "${title}" and their Amazon links.
 `
 
-console.log("prompt", mark_prompt)
+console.log("prompt", description_prompt)
 
-const title_prompt = `
-Generate an eco friendly score out of 100 for the product and the company based on the following 
+const alternative_prompt = `
+provide 3 alternative sustainable products similar to the product
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}". 
-Give score out of 100 to each of the factors with an explanation regarding 
-the pros and cons of the product's sustainability.
+packaging type: "${packaging}"`
 
-In addition, provide 3 alternative sustainable products similar to the product with title: "${title}" and their Amazon links.
-`
-
-prompt = title_prompt
-
-console.log("prompt", prompt)
+console.log("prompt", alternative_prompt)
 
 // 3 chatgpt api calls
 // 1. for score
@@ -110,14 +109,14 @@ console.log("prompt", prompt)
 // make api call to chatGPT
 const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 const body = {
-    prompt: prompt,
+    prompt: [score_prompt, description_prompt, alternative_prompt],
     max_tokens: 600,
     n: 1,
     stop: ""
 };
 const headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
 };
 
 fetch(url, {
@@ -138,7 +137,9 @@ fetch(url, {
     chrome.runtime.sendMessage({
         method:"getMetas",
         metas:metaArr,
-        data: data.choices[0].text
+        score:data.choices[0].text,
+        explanation:data.choices[1].text,
+        alternatives:data.choices[2].text
     });
 }).catch(error => {
     console.error(error);
