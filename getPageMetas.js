@@ -1,5 +1,33 @@
 console.log("getPageMetas - begin")
 
+const productDescription = document.querySelector('#productDescription').innerText.trim();
+console.log("Product Description: ", productDescription);
+
+
+
+let typicalPackage = '';
+if (productDescription.includes('Typical Package')) {
+  typicalPackage = productDescription.split('Typical Package :')[1].split('.')[0].trim();
+}
+console.log("Typical Package: ", typicalPackage);
+
+
+///////////////
+///////////////
+
+
+// const table = document.querySelector('#productOverview_feature_div').querySelectorAll('.a-list-item');
+const table = document.querySelector('#productOverview_feature_div div div div table tbody');
+console.log("table: ", table);
+const Brand = document.querySelector('#productOverview_feature_div div div div table tbody .po-brand .a-span9 span').textContent;
+console.log("Brand: ", Brand);
+const compatible_devices = document.querySelector('#productOverview_feature_div div div div table tbody .po-compatible_devices .a-span9 span').textContent;
+console.log("compatible_devices: ", compatible_devices);
+const ConnectivityTechnology = document.querySelector('#productOverview_feature_div div div div table tbody .po-connectivity_technology .a-span9 span').textContent;
+console.log("Brand: ", ConnectivityTechnology);
+const KeyboardBacklighting = document.querySelector('#productOverview_feature_div div div div table tbody .po-keyboard_backlighting_color_support .a-span9 span').textContent;
+console.log("Brand: ", KeyboardBacklighting);
+
 var metas = document.getElementsByTagName('meta'); 
 var metaArr = [];
 for (var i=0; i<metas.length; i++) { 
