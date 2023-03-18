@@ -22,6 +22,7 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 			metaTable.innerHTML += "<tr><td>"+request.metas[i][0]+"</td><td>"+request.metas[i][1]+"</td><td>"+request.metas[i][2]+"</td><td>"+request.metas[i][3]+"</td><td>"+request.metas[i][4]+"</td></tr>"; 
 		} 
 	}
+	document.getElementById("result").innerText = request.data;
 });
 
 window.onload = getMetas;
