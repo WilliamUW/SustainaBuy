@@ -19,22 +19,46 @@ chrome.runtime.sendMessage({
 console.log("got metas")
 console.log("metaArr information: ", metaArr)
 
-// make api call
-
 // get product title, description, manufacturer from metaArr
+var title = "";
+var ingredients = "";
+var packaging = "";
 
-// have prompt utilize the product description
+for (var i=0; i<metaArr.length; i++) {
+    if (metaArr[i][0] === "title") {
+        title = metaArr[i][3];
+    } else if (metaArr[i][0] === "description") {
+        var desc = metaArr[i][3].toLowerCase();
+        ingredients = desc;
+        // if (desc.includes("ingredients")) {
+        //     ingredients = desc.split("ingredients: ")[1];
+        // } else if (desc.includes("packaging")) {
+        //     packaging = desc.split("packaging: ")[1];
+        // }
+    }
+}
 
+console.log("title", title)
+console.log("ingredients", ingredients)
+console.log("packaging", packaging)
+
+console.log("checkpoint 1")
+
+const prompt = `Generate an eco friendly score out of 100 for the product and the company based on the following title: "${title}", ingredients: "${ingredients}", packaging type: "${packaging}". Give score out of 100 to each of the factors with an explanation regarding the pros and cons of the product's sustainability`
+
+console.log("prompt", prompt)
+
+// make api call to chatGPT
 const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 const body = {
-    prompt: "What are some good ways to improve my productivity?",
+    prompt: prompt,
     max_tokens: 600,
     n: 1,
     stop: ""
 };
 const headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
 };
 
 fetch(url, {
