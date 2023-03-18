@@ -1,12 +1,12 @@
 console.log("getPageMetas - begin")
 
-const productDescription = document.querySelector('#productDescription').innerText.trim();
+const productDescription = document.querySelector('#productDescription')?.innerText.trim();
 console.log("Product Description: ", productDescription);
 
 
 
 let typicalPackage = '';
-if (productDescription.includes('Typical Package')) {
+if (productDescription?.includes('Typical Package')) {
   typicalPackage = productDescription.split('Typical Package :')[1].split('.')[0].trim();
 }
 console.log("Typical Package: ", typicalPackage);
@@ -117,7 +117,7 @@ const body = {
 };
 const headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
 };
 
 fetch(url, {
