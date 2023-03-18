@@ -21,7 +21,7 @@ console.log("metaArr information: ", metaArr)
 
 // make api call
 
-// get product title, description, manufacturer
+// get product title, description, manufacturer from metaArr
 
 // have prompt utilize the product description
 
