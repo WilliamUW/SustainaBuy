@@ -44,7 +44,16 @@ console.log("packaging", packaging)
 
 console.log("checkpoint 1")
 
-const prompt = `Generate an eco friendly score out of 100 for the product and the company based on the following title: "${title}", ingredients: "${ingredients}", packaging type: "${packaging}". Give score out of 100 to each of the factors with an explanation regarding the pros and cons of the product's sustainability`
+const prompt = `
+Generate an eco friendly score out of 100 for the product and the company based on the following 
+title: "${title}", 
+ingredients: "${ingredients}", 
+packaging type: "${packaging}". 
+Give score out of 100 to each of the factors with an explanation regarding 
+the pros and cons of the product's sustainability.
+
+In addition, provide 3 alternative sustainable products similar to the product with title: "${title}" and their Amazon links.
+`
 
 console.log("prompt", prompt)
 
