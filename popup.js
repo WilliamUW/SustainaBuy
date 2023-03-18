@@ -1,5 +1,10 @@
+// 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
+
+// import { getResponseFromChatGPT } from "./chatgpt.js";
+
 function getMetas() {
 	var message = document.querySelector('#metaTable');
+	message.innerHTML = '';
 	chrome.tabs.executeScript(null, {
 		file: "getPageMetas.js"
 	}, function() {
