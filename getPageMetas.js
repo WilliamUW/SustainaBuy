@@ -34,7 +34,7 @@ const body = {
 };
 const headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer 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"
 };
 
 fetch(url, {
