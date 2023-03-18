@@ -21,6 +21,10 @@ console.log("metaArr information: ", metaArr)
 
 // make api call
 
+// get product title, description, manufacturer
+
+// have prompt utilize the product description
+
 const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 const body = {
     prompt: "What are some good ways to improve my productivity?",
