@@ -12,11 +12,14 @@ function getMetas() {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
+	const includeMetaTable = true;
+	if (includeMetaTable) {
 	var metaTable = document.getElementById('metaTable');
 	if (request.method == "getMetas") {
 		for (var i=0; i<request.metas.length; i++) { 
 			metaTable.innerHTML += "<tr><td>"+request.metas[i][0]+"</td><td>"+request.metas[i][1]+"</td><td>"+request.metas[i][2]+"</td><td>"+request.metas[i][3]+"</td><td>"+request.metas[i][4]+"</td></tr>"; 
 		} 
+	}
 	}
 	document.getElementById("score").innerText = request.score;
 	document.getElementById("explanation").innerText = request.explanation;

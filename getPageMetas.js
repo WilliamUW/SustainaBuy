@@ -1,4 +1,4 @@
-const API_KEY = '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';
+const API_KEY = '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';
 
 console.log("getPageMetas - begin")
 
@@ -184,14 +184,12 @@ fetch(url, {
     }
 }).then(data => {
     console.log(data.choices);
-    console.log(data.choices[0].text);
-    console.log(data.choices[0].text.trim());
     chrome.runtime.sendMessage({
         method:"getMetas",
         metas:metaArr,
-        score:data.choices[0].text,
-        explanation:data.choices[1].text,
-        alternatives:data.choices[2].text
+        score:data.choices[0].text.trim(),
+        explanation:data.choices[1].text.trim(),
+        alternatives:data.choices[2].text.trim()
     });
 }).catch(error => {
     console.error(error);

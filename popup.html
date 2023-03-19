@@ -13,7 +13,7 @@
     height: 200px;
     background-color: green; /* or any other desired color */
     border-radius: 50%;
-    margin: 20px auto;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,6 +70,9 @@
 			#score {
 				color:black !important;
 			}
+			.unknown {
+				background-color: grey !important;
+			}
 			.green {
 				background-color: green !important;
 			}
@@ -84,7 +87,6 @@
 				text-align: center;
 				font-size: 30px;
 				display: block;
-				margin-top: 5%;
 			}
 			.explanation-p {
 				font-size: 15px;
@@ -98,8 +100,8 @@
 	</head>
 	<body>
 		<!-- <h1>Meta Tags</h1> -->
-		<div id="score-circle" class="green">
-			<span id="score">0</span>
+		<div id="score-circle" class="unknown">
+			<span id="score">?</span>
 			<div class="percentage">/100</div>
 		</div>
 		<br />
@@ -109,16 +111,18 @@
 		<br />
 		<p class="explanation-title">SustainBuy Analysis</p>
 		<p id="explanation" class="explanation-p">
-			Generating analysis!
+			Generating Analysis!
 		</p>
 		<p class="alternative-title">Alternatives</p>
-		<p id="alternatives" class="explanation-p"></p>
+		<p id="alternatives" class="explanation-p">
+			Generating Alternatives!
+		</p>
 		<!-- <ul>
 			<li><a href="https://www.amazon.com/Fujifilm-Instant-Carrying-Assorted-Accessories/dp/B08MDTCVNJ/ref=sr_1_1_sspa?crid=ZCQYDXV4PSFN&keywords=camer&qid=1679179886&sprefix=camer%2Caps%2C100&sr=8-1-spons&smid=A30YQ3CNGTOIT3&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFGQkRKSEdUNzBZSlEmZW5jcnlwdGVkSWQ9QTA0NzAxODhGV1pSRldZTEhTMkYmZW5jcnlwdGVkQWRJZD1BMDcwMjYxNUs2SkRaVFJPRVdQQiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU&th=1" class="link">1. Alternative Amazon Link 1</a></li>
 			<li><a href="https://www.amazon.com/Logitech-Tenkeyless-Lightspeed-Mechanical-LIGHTSYNC/dp/B085RLZ1C4/ref=sr_1_1_sspa?crid=12V4MYK0T4V7I&keywords=gaming%2Bkeyboard%2Blogitech%2Bg915&qid=1679180136&sprefix=gaming%2Bkeyboard%2Blogitdch%2B915%2Caps%2C78&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFST0pFVzBZOVlWNEYmZW5jcnlwdGVkSWQ9QTA5MjIyNDcxVUo4M09DMk1DVkImZW5jcnlwdGVkQWRJZD1BMDAxNTkyNzE4NEIzQkpJRE9IM1kmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl&th=1" class="link">2. Alternative Amazon Link 2</a></li>
 			<li><a href="https://www.amazon.com/Logitech-Tenkeyless-Lightspeed-Mechanical-LIGHTSYNC/dp/B085RLZ1C4/ref=sr_1_1_sspa?crid=12V4MYK0T4V7I&keywords=gaming%2Bkeyboard%2Blogitech%2Bg915&qid=1679180136&sprefix=gaming%2Bkeyboard%2Blogitdch%2B915%2Caps%2C78&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFST0pFVzBZOVlWNEYmZW5jcnlwdGVkSWQ9QTA5MjIyNDcxVUo4M09DMk1DVkImZW5jcnlwdGVkQWRJZD1BMDAxNTkyNzE4NEIzQkpJRE9IM1kmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl&th=1" class="link">3. Alternative Amazon Link 3</a></li>
 		</ul> -->
-		<h1>Meta Tags</h1>
+		<p class="alternative-title">Extracted Information</p>
 		<table>
 			<thead>
 				<tr>
