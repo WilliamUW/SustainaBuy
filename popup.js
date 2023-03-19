@@ -32,9 +32,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 	console.log(score);
 	console.log(score >= 80);
 	let backgroundColor;
-	if (score >= 80) {
+	if (score >= 70) {
 		backgroundColor = "green";
-	} else if (score < 60) {
+	} else if (score < 30) {
 		backgroundColor = "red";
 	} else {
 		backgroundColor = "yellow";
