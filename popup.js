@@ -21,27 +21,28 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 		} 
 	}
 	}
-	document.getElementById("score").innerText = request.score;
+	const regex = /\d+/g; // matches any sequence of digits
+	const scores = request.score.match(regex); 
+
+	const score = parseInt(scores[0]);
+	document.getElementById("score").innerText = score;
+
 	document.getElementById("product_explanation").innerHTML = request.product_explanation;
-	document.getElementById("company_explanation").innerHTML = request.company_explanation;
+	// document.getElementById("company_explanation").innerHTML = request.company_explanation;
 	document.getElementById("alternatives").innerText = request.alternatives;
 
-// following by eric, change background color of circle in popup.html
-// Set the score in another JS file
-let score = 75;
-document.querySelector("#score").textContent = score;
-
 // Use the score to determine the background color
+console.log(score);
+console.log(score >= 80);
 let backgroundColor;
-if (score >= 70) {
-  backgroundColor = "green";
-} else if (score < 40) {
-  backgroundColor = "red";
+if (score > 70) {
+	backgroundColor = "green";
+} else if (score < 30) {
+	backgroundColor = "red";
 } else {
-  backgroundColor = "yellow";
+	backgroundColor = "yellow";
 }
 document.querySelector("#score-circle").classList.add(backgroundColor);
-// end eric
 });
 
 window.onload = getMetas;
