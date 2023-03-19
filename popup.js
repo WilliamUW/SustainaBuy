@@ -18,7 +18,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 			metaTable.innerHTML += "<tr><td>"+request.metas[i][0]+"</td><td>"+request.metas[i][1]+"</td><td>"+request.metas[i][2]+"</td><td>"+request.metas[i][3]+"</td><td>"+request.metas[i][4]+"</td></tr>"; 
 		} 
 	}
-	document.getElementById("result").innerText = request.score + request.explanation + request.alternatives;
+	document.getElementById("score").innerText = request.score;
+	document.getElementById("explanation").innerText = request.explanation;
+	document.getElementById("alternatives").innerText = request.alternatives;
 
 // following by eric, change background color of circle in popup.html
 // Set the score in another JS file
