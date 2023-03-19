@@ -151,16 +151,16 @@ console.log("checkpoint 1")
 const score_prompt = `
 Provide one eco friendly score from 0 to 100, 
 based on metrics and criteria such as environmental impact, social responsibility, and economic viability,
-one score that takes product and company into account, return one number only:
+one score that takes product and company into account:
 title: "${title}", 
 ingredients: "${ingredients}", 
 product description: "${productDescription}",
-additional details: "${result}".`
+additional details: "${result}". Return one number from 0 to 100 only:`
 
 console.log("score_prompt", score_prompt)
 
 const product_explanation_prompt = `
-Give an explanation regarding the pros and cons of the product's sustainability. Focus on the product's sustainability,
+Give a one paragraph explanation regarding the pros and one paragraph explanation regarding the cons of the product's sustainability. Focus on the product's sustainability,
 consider environmental impact, social responsibility, packaging, end of life, and raw materials.
 title: "${title}", 
 ingredients: "${ingredients}", 
