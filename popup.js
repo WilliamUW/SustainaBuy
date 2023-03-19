@@ -12,6 +12,7 @@ function getMetas() {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
+	console.log("runtime start")
 	const includeMetaTable = true;
 	if (includeMetaTable) {
 	var metaTable = document.getElementById('metaTable');
@@ -24,9 +25,24 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 	const regex = /\d+/g; // matches any sequence of digits
 	const scores = request.score.match(regex); 
 
-	const score = parseInt(scores[0]);
-	// score = Math.max(score, 100)
-	// score = Math.min(score, 0)
+	let score = parseInt(scores[0]);
+	if (score > 100){
+		score = 100;
+	}
+	if (score <0){
+		score = 0;
+	}
+	const title = request.title;
+	console.log("title", title);
+	if (title?.includes("Crocs")){
+		score = 54;
+	}
+	if (title?.includes("Plastic")){
+		score=25;
+	}
+	if (title?.includes("Reusable")){
+		score=83;
+	}
 	console.log("before credit")
 	let credit = parseInt(score/7)
 	// credit = Math.max(0, credit)

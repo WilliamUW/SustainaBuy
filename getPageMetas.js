@@ -1,4 +1,4 @@
-const API_KEY = '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';
+const API_KEY = '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';
 
 console.log("getPageMetas - begin")
 
@@ -226,6 +226,7 @@ fetch(url, {
         metas:metaArr,
         score:data.choices[0].text.trim(),
         product_explanation:data.choices[1].text.trim(),
+        title:title,
 /*
         company_explanation:data.choices[2].text.trim(),
 */
