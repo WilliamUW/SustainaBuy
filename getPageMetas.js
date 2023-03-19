@@ -76,6 +76,48 @@ if (productDetails) {
                 result.push(`Refresh rate: ${cellValue}`)
                 break;
             }
+            if (cellText === 'Finish Types') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Finish Types:', cellValue);
+                result.push(`Finish Types: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Import') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Import:', cellValue);
+                result.push(`Import: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Imported') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Imported:', cellValue);
+                result.push(`Imported: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Power Source') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Power Source:', cellValue);
+                result.push(`Display type: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Material') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Material:', cellValue);
+                result.push(`Material: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Materials') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Materials:', cellValue);
+                result.push(`Materials: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Material Type') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Material Type:', cellValue);
+                result.push(`Material Type: ${cellValue}`)
+                break;
+            }
         }
     }
     console.log(result);
