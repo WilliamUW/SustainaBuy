@@ -25,10 +25,11 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 	const scores = request.score.match(regex); 
 
 	const score = parseInt(scores[0]);
-	//score = max(score, 100)
-	//score = min(score, 0)
+	// score = Math.max(score, 100)
+	// score = Math.min(score, 0)
 	console.log("before credit")
 	let credit = parseInt(score/7)
+	// credit = Math.max(0, credit)
 	//let credit = max(score - 50, 0);
 	//credit = floor(credit/7);
 	console.log(credit);
