@@ -8,7 +8,7 @@ const productDescription = document.querySelector('#productDescription')?.innerT
 console.log("Product Description: ", productDescription);
 
 // Product Overview (upper table)
-const productOverview = document.querySelector('#productOverview_feature_div table');
+/*const productOverview = document.querySelector('#productOverview_feature_div table');
 console.log("table: ", productOverview);
 
 if (productOverview) {
@@ -26,12 +26,16 @@ if (productOverview) {
     }
 } else {
     console.log('Table not found on this page');
-}
-// Product details (lower table) technical
+}*/
+// array with relevant details for evaluation
+const result = []; // Declare and initialize result variable here
+
+// Product Details (lower table)
 const productDetails = document.querySelector('#productDetails_techSpec_section_1');
 console.log("table: ", productDetails);
 if (productDetails) {
     const rows = productDetails.querySelectorAll('tbody tr');
+
     for (const row of rows) {
         const cells = row.querySelectorAll('td');
         for (let i = 0; i < cells.length; i++) {
@@ -39,10 +43,43 @@ if (productDetails) {
             if (cellText === 'Brand') {
                 const cellValue = cells[i].textContent.trim();
                 console.log('Brand:', cellValue);
+                result.push(`Brand: ${cellValue}`)
+                break;
+            }
+            /*if (cellText === 'Manufacturer') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Manufacturer:', cellValue);
+                result.push(`Manufacturer: ${cellValue}`)
+                break;
+            }*/
+            if (cellText === 'Special features') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Special features:', cellValue);
+                result.push(`Special features: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Display Technology') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Display Technology:', cellValue);
+                result.push(`Display Technology: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Display type') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Display type:', cellValue);
+                result.push(`Display type: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Refresh rate') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Refresh rate:', cellValue);
+                result.push(`Refresh rate: ${cellValue}`)
                 break;
             }
         }
     }
+    console.log(result);
+
 } else {
     console.log('Table not found on this page');
 }
