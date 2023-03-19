@@ -4,6 +4,96 @@
 		<title>Meta Tags</title>
 		<script type="text/javascript" src="popup.js"></script>
 		<link rel="stylesheet" href="style.css" type="text/css">
+		<style>
+			body {
+				background-color: white;
+			}
+			#score-circle {
+    width: 200px;
+    height: 200px;
+    background-color: green; /* or any other desired color */
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#score-circle span {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    z-index: 2;
+}
+
+#score-circle .percentage {
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+}
+			/* #score-circle {
+				width: 200px;
+				height: 200px;
+				background-color: #ccc;
+				border-radius: 50%;
+				margin: 20px auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+			}
+			#score-circle::before {
+				content: "";
+				width: 80%;
+				height: 80%;
+				background-color: white;
+				border-radius: 50%;
+				position: absolute;
+				z-index: 1;
+			}
+			#score-circle span {
+				font-size: 48px;
+				font-weight: bold;
+				color: white;
+				z-index: 2;
+			}
+			#score-circle .percentage {
+				font-size: 24px;
+				font-weight: bold;
+				position: absolute;
+				bottom: -40px;
+				right: 0;
+			} */
+			#score {
+				color:black !important;
+			}
+			.green {
+				background-color: green !important;
+			}
+			.yellow {
+				background-color: yellow !important;
+			}
+			.red {
+				background-color: red !important;
+			}
+			.explanation-title,
+			.alternative-title {
+				text-align: center;
+				font-size: 100px;
+				margin-top: 30px;
+				display: block;
+				margin: 0 auto;
+			}
+			.explanation-p {
+				font-size: 30px;
+			}
+			.link {
+				font-size: 50px;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Meta Tags</h1>
@@ -20,6 +110,31 @@
 			<tbody id="metaTable"></tbody>
 		</table>
 		<p id="result">No Result Yet</p>
+		<!-- <h1>Meta Tags</h1> -->
+		<div id="score-circle" class="green">
+			<span id="score">0</span>
+			<div class="percentage">/100</div>
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<p class="explanation-title">Explanation</p>
+		<p class="explanation-p">Generate an eco friendly score out of 100 for the product and the company based on the following 
+			title: "Amazon.com : Fujifilm Instax Mini 11 Camera + Fuji Instant Instax Film (40 Sheets) & Includes Case + Assorted Frames + Photo Album + 4 Color Filters and More Bundle (Blush Pink) : Electronics", 
+			ingredients: "amazon.com : fujifilm instax mini 11 camera + fuji instant instax film (40 sheets) & includes case + assorted frames + photo album + 4 color filters and more bundle (blush pink) : electronics", 
+			packaging type: "". 
+			Give score out of 100 to each of the factors with an explanation regarding 
+			the pros and cons of the product's sustainability.
+			
+			In addition, provide 3 alternative sustainable products similar to the product with title: "Amazon.com : Fujifilm Instax Mini 11 Camera + Fuji Instant Instax Film (40 Sheets) & Includes Case + Assorted Frames + Photo Album + 4 Color Filters and More Bundle (Blush Pink) : Electronics" and their Amazon links.</p>
+		<p class="alternative-title">Alternative</p>
+		<ul>
+			<li><a href="https://www.amazon.com/Fujifilm-Instant-Carrying-Assorted-Accessories/dp/B08MDTCVNJ/ref=sr_1_1_sspa?crid=ZCQYDXV4PSFN&keywords=camer&qid=1679179886&sprefix=camer%2Caps%2C100&sr=8-1-spons&smid=A30YQ3CNGTOIT3&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFGQkRKSEdUNzBZSlEmZW5jcnlwdGVkSWQ9QTA0NzAxODhGV1pSRldZTEhTMkYmZW5jcnlwdGVkQWRJZD1BMDcwMjYxNUs2SkRaVFJPRVdQQiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU&th=1" class="link">1. Alternative Amazon Link 1</a></li>
+			<li><a href="https://www.amazon.com/Logitech-Tenkeyless-Lightspeed-Mechanical-LIGHTSYNC/dp/B085RLZ1C4/ref=sr_1_1_sspa?crid=12V4MYK0T4V7I&keywords=gaming%2Bkeyboard%2Blogitech%2Bg915&qid=1679180136&sprefix=gaming%2Bkeyboard%2Blogitdch%2B915%2Caps%2C78&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFST0pFVzBZOVlWNEYmZW5jcnlwdGVkSWQ9QTA5MjIyNDcxVUo4M09DMk1DVkImZW5jcnlwdGVkQWRJZD1BMDAxNTkyNzE4NEIzQkpJRE9IM1kmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl&th=1" class="link">2. Alternative Amazon Link 2</a></li>
+			<li><a href="https://www.amazon.com/Logitech-Tenkeyless-Lightspeed-Mechanical-LIGHTSYNC/dp/B085RLZ1C4/ref=sr_1_1_sspa?crid=12V4MYK0T4V7I&keywords=gaming%2Bkeyboard%2Blogitech%2Bg915&qid=1679180136&sprefix=gaming%2Bkeyboard%2Blogitdch%2B915%2Caps%2C78&sr=8-1-spons&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUFST0pFVzBZOVlWNEYmZW5jcnlwdGVkSWQ9QTA5MjIyNDcxVUo4M09DMk1DVkImZW5jcnlwdGVkQWRJZD1BMDAxNTkyNzE4NEIzQkpJRE9IM1kmd2lkZ2V0TmFtZT1zcF9hdGYmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl&th=1" class="link">3. Alternative Amazon Link 3</a></li>
+		</ul>
 		<script src="popup.js"></script>
 	</body>
 </html>
