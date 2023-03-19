@@ -1,11 +1,11 @@
-const API_KEY = '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';
+const API_KEY = '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';
 
 console.log("getPageMetas - begin")
 
 
-// Product description
-const productDescription = document.querySelector('#productDescription')?.innerText.trim();
-console.log("Product Description: ", productDescription);
+// // Product description
+// const productDescription = document.querySelector('#productDescription')?.innerText.trim();
+// console.log("Product Description: ", productDescription);
 
 // Product Overview (upper table)
 /*const productOverview = document.querySelector('#productOverview_feature_div table');
@@ -125,31 +125,41 @@ console.log("packaging", packaging)
 console.log("checkpoint 1")
 
 const score_prompt = `
-Generate an eco friendly score out of 100 for the product and the company based on the following 
+Provide one eco friendly score from 0 to 100, 
+based on metrics and criteria such as environmental impact, social responsibility, and economic viability,
+one score that takes product and company into account, return one number only:
 title: "${title}", 
 ingredients: "${ingredients}", 
 packaging type: "${packaging}".`
 
-console.log("prompt", score_prompt)
+console.log("score_prompt", score_prompt)
 
-const description_prompt = `
-Generate an eco friendly score out of 100 for the product and the company based on the following 
+const product_explanation_prompt = `
+Give an explanation regarding the pros and cons of the product's sustainability. Focus on the product's sustainability,
+consider Packaging, and end of life, raw materials.
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}". 
-Give score out of 100 to each of the factors with an explanation regarding 
-the pros and cons of the product's sustainability.
-`
+packaging type: "${packaging}". `
 
-console.log("prompt", description_prompt)
+console.log("product_explanation_prompt", product_explanation_prompt)
+
+const company_explanation_prompt = `
+Give an explanation regarding the pros and cons of the company's sustainability. Focus on the company, 
+consider company's reputation and manufacturing process.
+title: "${title}", 
+ingredients: "${ingredients}", 
+packaging type: "${packaging}". `
+
+console.log("company_explanation_prompt", company_explanation_prompt)
 
 const alternative_prompt = `
-provide 3 alternative sustainable products similar to the product
+Find 3 alternative sustainable products on amazon that are similar to this one. 
+Provide the names of the 3 relevant product names with:
 title: "${title}", 
 ingredients: "${ingredients}", 
 packaging type: "${packaging}"`
 
-console.log("prompt", alternative_prompt)
+console.log("alternative_prompt", alternative_prompt)
 
 // 3 chatgpt api calls
 // 1. for score
@@ -161,7 +171,7 @@ console.log("prompt", alternative_prompt)
 // make api call to chatGPT
 const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 const body = {
-    prompt: [score_prompt, description_prompt, alternative_prompt],
+    prompt: [score_prompt, product_explanation_prompt, company_explanation_prompt, alternative_prompt],
     max_tokens: 600,
     n: 1,
     stop: ""
@@ -188,8 +198,9 @@ fetch(url, {
         method:"getMetas",
         metas:metaArr,
         score:data.choices[0].text.trim(),
-        explanation:data.choices[1].text.trim(),
-        alternatives:data.choices[2].text.trim()
+        product_explanation:data.choices[1].text.trim(),
+        company_explanation:data.choices[2].text.trim(),
+        alternatives:data.choices[3].text.trim()
     });
 }).catch(error => {
     console.error(error);

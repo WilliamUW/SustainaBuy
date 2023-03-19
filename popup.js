@@ -22,7 +22,8 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 	}
 	}
 	document.getElementById("score").innerText = request.score;
-	document.getElementById("explanation").innerText = request.explanation;
+	document.getElementById("product_explanation").innerHTML = request.product_explanation;
+	document.getElementById("company_explanation").innerHTML = request.company_explanation;
 	document.getElementById("alternatives").innerText = request.alternatives;
 
 // following by eric, change background color of circle in popup.html
