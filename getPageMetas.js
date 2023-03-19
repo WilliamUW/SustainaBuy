@@ -4,29 +4,10 @@ console.log("getPageMetas - begin")
 
 
 // // Product description
-// const productDescription = document.querySelector('#productDescription')?.innerText.trim();
-// console.log("Product Description: ", productDescription);
+const productDescription = document.querySelector('#productDescription')?.innerText.trim();
+console.log("Product Description: ", productDescription);
 
-// Product Overview (upper table)
-/*const productOverview = document.querySelector('#productOverview_feature_div table');
-console.log("table: ", productOverview);
 
-if (productOverview) {
-    const rows = productOverview.querySelectorAll('tbody tr');
-    for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].querySelectorAll('td');
-        for (let j = 0; j < cells.length; j++) {
-            const cellText = cells[j].textContent.trim();
-            if (cellText === 'Brand') {
-                const cellValue = cells[j + 1].querySelector('span')?.textContent;
-                console.log('Brand:', cellValue);
-                break;
-            }
-        }
-    }
-} else {
-    console.log('Table not found on this page');
-}*/
 // array with relevant details for evaluation
 const result = []; // Declare and initialize result variable here
 
@@ -43,6 +24,7 @@ if (productDetails) {
             if (cellText === 'Brand') {
                 const cellValue = cells[i].textContent.trim();
                 console.log('Brand:', cellValue);
+                brand = cellValue;
                 result.push(`Brand: ${cellValue}`)
                 break;
             }
@@ -172,34 +154,37 @@ based on metrics and criteria such as environmental impact, social responsibilit
 one score that takes product and company into account, return one number only:
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}".`
+product description: "${productDescription}",
+additional details: "${result}".`
 
 console.log("score_prompt", score_prompt)
 
 const product_explanation_prompt = `
 Give an explanation regarding the pros and cons of the product's sustainability. Focus on the product's sustainability,
-consider Packaging, and end of life, raw materials.
+consider environmental impact, social responsibility, packaging, end of life, and raw materials.
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}". `
+packaging type: "${packaging}",
+product description: "${productDescription}",
+additional details: "${result}". `
 
 console.log("product_explanation_prompt", product_explanation_prompt)
 
-const company_explanation_prompt = `
-Give an explanation regarding the pros and cons of the company's sustainability. Focus on the company, 
+/*const company_explanation_prompt = `
+Talk about the company's sustainability. Focus on the company, 
 consider company's reputation and manufacturing process.
-title: "${title}", 
-ingredients: "${ingredients}", 
-packaging type: "${packaging}". `
+Company: "${brandName}",
+Manufacturer: "${manufacturerName}.`
 
-console.log("company_explanation_prompt", company_explanation_prompt)
+console.log("company_explanation_prompt", company_explanation_prompt)*/
 
 const alternative_prompt = `
 Find 3 alternative sustainable products on amazon that are similar to this one. 
 Provide the names of the 3 relevant product names with:
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}"`
+product description: "${productDescription}",
+additional details: "${result}". `
 
 console.log("alternative_prompt", alternative_prompt)
 
@@ -213,7 +198,7 @@ console.log("alternative_prompt", alternative_prompt)
 // make api call to chatGPT
 const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 const body = {
-    prompt: [score_prompt, product_explanation_prompt, company_explanation_prompt, alternative_prompt],
+    prompt: [score_prompt, product_explanation_prompt, /*company_explanation_prompt,*/ alternative_prompt],
     max_tokens: 600,
     n: 1,
     stop: ""
@@ -241,8 +226,10 @@ fetch(url, {
         metas:metaArr,
         score:data.choices[0].text.trim(),
         product_explanation:data.choices[1].text.trim(),
+/*
         company_explanation:data.choices[2].text.trim(),
-        alternatives:data.choices[3].text.trim()
+*/
+        alternatives:data.choices[2].text.trim()
     });
 }).catch(error => {
     console.error(error);
