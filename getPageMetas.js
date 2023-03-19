@@ -1,4 +1,5 @@
-const API_KEY = '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';
+const API_KEY = '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'
+
 
 console.log("getPageMetas - begin")
 
