@@ -2,37 +2,50 @@ const API_KEY = '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'
 
 console.log("getPageMetas - begin")
 
-const productDescription = document.querySelector('#productDescription')?.innerText.trim();
+
+// Product description
+const productDescription = document.querySelector('#productDescription').innerText.trim();
 console.log("Product Description: ", productDescription);
 
+// Product Overview (upper table)
+const productOverview = document.querySelector('#productOverview_feature_div table');
+console.log("table: ", productOverview);
 
-
-let typicalPackage = '';
-if (productDescription?.includes('Typical Package')) {
-  typicalPackage = productDescription.split('Typical Package :')[1].split('.')[0].trim();
+if (productOverview) {
+    const rows = productOverview.querySelectorAll('tbody tr');
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].querySelectorAll('td');
+        for (let j = 0; j < cells.length; j++) {
+            const cellText = cells[j].textContent.trim();
+            if (cellText === 'Brand') {
+                const cellValue = cells[j + 1].querySelector('span')?.textContent;
+                console.log('Brand:', cellValue);
+                break;
+            }
+        }
+    }
+} else {
+    console.log('Table not found on this page');
 }
-console.log("Typical Package: ", typicalPackage);
-
-
-///////////////
-///////////////
-
-
-// const table = document.querySelector('#productOverview_feature_div').querySelectorAll('.a-list-item');
-const table = document.querySelector('#productOverview_feature_div');
-console.log("table: ", table);
-
-// add "div" to query selector string until qeury is not null
-const Brand = document.querySelector('#productOverview_feature_div div div div table tbody .po-brand .a-span9 span')?.textContent;
-console.log("Brand: ", Brand);
-const Brand2 = document.querySelector('#productOverview_feature_div div div table tbody .po-brand .a-span9 span')?.textContent;
-console.log("Brand: ", Brand2);
-const compatible_devices = document.querySelector('#productOverview_feature_div div div div table tbody .po-compatible_devices .a-span9 span')?.textContent;
-console.log("compatible_devices: ", compatible_devices);
-const ConnectivityTechnology = document.querySelector('#productOverview_feature_div div div div table tbody .po-connectivity_technology .a-span9 span')?.textContent;
-console.log("Brand: ", ConnectivityTechnology);
-const KeyboardBacklighting = document.querySelector('#productOverview_feature_div div div div table tbody .po-keyboard_backlighting_color_support .a-span9 span')?.textContent;
-console.log("Brand: ", KeyboardBacklighting);
+// Product details (lower table) technical
+const productDetails = document.querySelector('#productDetails_techSpec_section_1');
+console.log("table: ", productDetails);
+if (productDetails) {
+    const rows = productDetails.querySelectorAll('tbody tr');
+    for (const row of rows) {
+        const cells = row.querySelectorAll('td');
+        for (let i = 0; i < cells.length; i++) {
+            const cellText = cells[i].previousElementSibling.textContent.trim();
+            if (cellText === 'Brand') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Brand:', cellValue);
+                break;
+            }
+        }
+    }
+} else {
+    console.log('Table not found on this page');
+}
 
 var metas = document.getElementsByTagName('meta'); 
 var metaArr = [];
