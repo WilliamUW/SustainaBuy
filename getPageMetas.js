@@ -1,3 +1,5 @@
+const API_KEY = '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'
+
 console.log("getPageMetas - begin")
 
 const productDescription = document.querySelector('#productDescription')?.innerText.trim();
@@ -116,7 +118,7 @@ const body = {
 };
 const headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer " + API_KEY
 };
 
 fetch(url, {
