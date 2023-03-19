@@ -1,37 +1,23 @@
 const API_KEY = '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'
 
+
 console.log("getPageMetas - begin")
 
 
-// Product description
+// // Product description
 const productDescription = document.querySelector('#productDescription')?.innerText.trim();
 console.log("Product Description: ", productDescription);
 
-// Product Overview (upper table)
-const productOverview = document.querySelector('#productOverview_feature_div table');
-console.log("table: ", productOverview);
 
-if (productOverview) {
-    const rows = productOverview.querySelectorAll('tbody tr');
-    for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].querySelectorAll('td');
-        for (let j = 0; j < cells.length; j++) {
-            const cellText = cells[j].textContent.trim();
-            if (cellText === 'Brand') {
-                const cellValue = cells[j + 1].querySelector('span')?.textContent;
-                console.log('Brand:', cellValue);
-                break;
-            }
-        }
-    }
-} else {
-    console.log('Table not found on this page');
-}
-// Product details (lower table) technical
+// array with relevant details for evaluation
+const result = []; // Declare and initialize result variable here
+
+// Product Details (lower table)
 const productDetails = document.querySelector('#productDetails_techSpec_section_1');
 console.log("table: ", productDetails);
 if (productDetails) {
     const rows = productDetails.querySelectorAll('tbody tr');
+
     for (const row of rows) {
         const cells = row.querySelectorAll('td');
         for (let i = 0; i < cells.length; i++) {
@@ -39,10 +25,86 @@ if (productDetails) {
             if (cellText === 'Brand') {
                 const cellValue = cells[i].textContent.trim();
                 console.log('Brand:', cellValue);
+                brand = cellValue;
+                result.push(`Brand: ${cellValue}`)
+                break;
+            }
+            /*if (cellText === 'Manufacturer') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Manufacturer:', cellValue);
+                result.push(`Manufacturer: ${cellValue}`)
+                break;
+            }*/
+            if (cellText === 'Special features') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Special features:', cellValue);
+                result.push(`Special features: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Display Technology') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Display Technology:', cellValue);
+                result.push(`Display Technology: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Display type') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Display type:', cellValue);
+                result.push(`Display type: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Refresh rate') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Refresh rate:', cellValue);
+                result.push(`Refresh rate: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Finish Types') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Finish Types:', cellValue);
+                result.push(`Finish Types: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Import') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Import:', cellValue);
+                result.push(`Import: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Imported') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Imported:', cellValue);
+                result.push(`Imported: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Power Source') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Power Source:', cellValue);
+                result.push(`Display type: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Material') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Material:', cellValue);
+                result.push(`Material: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Materials') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Materials:', cellValue);
+                result.push(`Materials: ${cellValue}`)
+                break;
+            }
+            if (cellText === 'Material Type') {
+                const cellValue = cells[i].textContent.trim();
+                console.log('Material Type:', cellValue);
+                result.push(`Material Type: ${cellValue}`)
                 break;
             }
         }
     }
+    console.log(result);
+
 } else {
     console.log('Table not found on this page');
 }
@@ -88,31 +150,44 @@ console.log("packaging", packaging)
 console.log("checkpoint 1")
 
 const score_prompt = `
-Generate an eco friendly score out of 100 for the product and the company based on the following 
+Provide one eco friendly score from 0 to 100, 
+based on metrics and criteria such as environmental impact, social responsibility, and economic viability,
+one score that takes product and company into account, return one number only:
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}".`
+product description: "${productDescription}",
+additional details: "${result}".`
 
-console.log("prompt", score_prompt)
+console.log("score_prompt", score_prompt)
 
-const description_prompt = `
-Generate an eco friendly score out of 100 for the product and the company based on the following 
+const product_explanation_prompt = `
+Give an explanation regarding the pros and cons of the product's sustainability. Focus on the product's sustainability,
+consider environmental impact, social responsibility, packaging, end of life, and raw materials.
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}". 
-Give score out of 100 to each of the factors with an explanation regarding 
-the pros and cons of the product's sustainability.
-`
+packaging type: "${packaging}",
+product description: "${productDescription}",
+additional details: "${result}". `
 
-console.log("prompt", description_prompt)
+console.log("product_explanation_prompt", product_explanation_prompt)
+
+/*const company_explanation_prompt = `
+Talk about the company's sustainability. Focus on the company, 
+consider company's reputation and manufacturing process.
+Company: "${brandName}",
+Manufacturer: "${manufacturerName}.`
+
+console.log("company_explanation_prompt", company_explanation_prompt)*/
 
 const alternative_prompt = `
-provide 3 alternative sustainable products similar to the product
+Find 3 alternative sustainable products on amazon that are similar to this one. 
+Provide the names of the 3 relevant product names with:
 title: "${title}", 
 ingredients: "${ingredients}", 
-packaging type: "${packaging}"`
+product description: "${productDescription}",
+additional details: "${result}". `
 
-console.log("prompt", alternative_prompt)
+console.log("alternative_prompt", alternative_prompt)
 
 // 3 chatgpt api calls
 // 1. for score
@@ -124,7 +199,7 @@ console.log("prompt", alternative_prompt)
 // make api call to chatGPT
 const url = "https://api.openai.com/v1/engines/text-davinci-002/completions";
 const body = {
-    prompt: [score_prompt, description_prompt, alternative_prompt],
+    prompt: [score_prompt, product_explanation_prompt, /*company_explanation_prompt,*/ alternative_prompt],
     max_tokens: 600,
     n: 1,
     stop: ""
@@ -147,14 +222,15 @@ fetch(url, {
     }
 }).then(data => {
     console.log(data.choices);
-    console.log(data.choices[0].text);
-    console.log(data.choices[0].text.trim());
     chrome.runtime.sendMessage({
         method:"getMetas",
         metas:metaArr,
-        score:data.choices[0].text,
-        explanation:data.choices[1].text,
-        alternatives:data.choices[2].text
+        score:data.choices[0].text.trim(),
+        product_explanation:data.choices[1].text.trim(),
+/*
+        company_explanation:data.choices[2].text.trim(),
+*/
+        alternatives:data.choices[2].text.trim()
     });
 }).catch(error => {
     console.error(error);

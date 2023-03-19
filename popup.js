@@ -12,6 +12,8 @@ function getMetas() {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
+	const includeMetaTable = true;
+	if (includeMetaTable) {
 	var metaTable = document.getElementById('metaTable');
 	if (request.method == "getMetas") {
 		for (var i=0; i<request.metas.length; i++) { 
@@ -24,7 +26,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
 
 	const score = parseInt(scores[0]);
 	document.getElementById("score").innerText = score;
-	document.getElementById("explanation").innerText = request.explanation;
+
+	document.getElementById("product_explanation").innerHTML = request.product_explanation;
+	document.getElementById("company_explanation").innerHTML = request.company_explanation;
 	document.getElementById("alternatives").innerText = request.alternatives;
 
 
