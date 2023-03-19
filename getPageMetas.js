@@ -1,10 +1,10 @@
-const API_KEY = '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'
+const API_KEY = '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'
 
 console.log("getPageMetas - begin")
 
 
 // Product description
-const productDescription = document.querySelector('#productDescription').innerText.trim();
+const productDescription = document.querySelector('#productDescription')?.innerText.trim();
 console.log("Product Description: ", productDescription);
 
 // Product Overview (upper table)
