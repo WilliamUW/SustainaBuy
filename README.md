@@ -85,3 +85,14 @@ it's possible to create something that can make a real difference in the world.
 feedback and expanding the set of parameters used to evaluate
 sustainability.
 - Our ultimate goal is to create a more sustainable future by encouraging eco-friendly consumer behavior.
+
+
+![](./Documentation/1.JPG)
+![](./Documentation/2.JPG)
+![](./Documentation/3.JPG)
+![](./Documentation/4.HEIC)
+![](./Documentation/5.png)
+![](./Documentation/6.png)
+![](./Documentation/7.png)
+![](./Documentation/8.png)
+![](./Documentation/9.png)
