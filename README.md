@@ -1,4 +1,4 @@
-Incredibly amazing team! 
+# SustainaBuy - UTMIST 2023
 
 🏆 Winner of Machine Learning Competition Hack the MIST 2023 at the University of Toronto. SustainaBuy is a Chrome extension applies OpenAI Model to analyze the sustainability score of any online product. SustainaBuy also provides detailed analysis, three alternative products, and reward points. SustainaBuy helps hundreds of billions of online consumers to shop better and support environmental health.
 
