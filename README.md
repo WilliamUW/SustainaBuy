@@ -14,7 +14,7 @@
 
 # Link
 
-Github Repo: [https://github.com/24ERIC/SustainaBuy-UTMIST2023](https://github.com/24ERIC/SustainaBuy-UTMIST2023)
+Github Repo: [https://github.com/WilliamUW/SustainaBuy](https://github.com/WilliamUW/SustainaBuy)
 
 Devpost: [https://devpost.com/software/sustainabuy](https://devpost.com/software/sustainabuy)
 
